@@ -3,7 +3,7 @@ import java.awt.event.*;
 import java.awt.*;
 
 public class Principal extends JFrame implements ActionListener{
-    
+
     private JButton biseccion, fPo, newton, pT, pP, pE, sec, salir;
 
     public Principal(){
@@ -56,7 +56,7 @@ public class Principal extends JFrame implements ActionListener{
         if(e.getSource() == biseccion){
             Runtime app = Runtime.getRuntime();
             try{
-            app.exec("cmd.exe /k start C:/Users/miken/OneDrive/Escritorio/Metodos/output/Biseccion/Biseccion.exe");
+            app.exec("cmd.exe /k start Biseccion.py");
             }
             catch(Exception error){
                 System.out.println("Error: " + error);
@@ -66,7 +66,7 @@ public class Principal extends JFrame implements ActionListener{
         if(e.getSource() == fPo){
             Runtime app = Runtime.getRuntime();
             try{
-            app.exec("cmd.exe /k start C:/Users/miken/OneDrive/Escritorio/Metodos/FalsaPosicion.py");
+            app.exec("cmd.exe /k start FalsaPosicion.py");
             }
             catch(Exception error){
                 System.out.println("Error: " + error);
@@ -76,7 +76,7 @@ public class Principal extends JFrame implements ActionListener{
         if(e.getSource() == newton){
             Runtime app = Runtime.getRuntime();
             try{
-            app.exec("cmd.exe /k start C:/Users/miken/OneDrive/Escritorio/Metodos/Newton.py");
+            app.exec("cmd.exe /k start Newton.py");
             }
             catch(Exception error){
                 System.out.println("Error: " + error);
@@ -86,7 +86,7 @@ public class Principal extends JFrame implements ActionListener{
         if(e.getSource() == sec){
             Runtime app = Runtime.getRuntime();
             try{
-            app.exec("cmd.exe /k start C:/Users/miken/OneDrive/Escritorio/Metodos/Secante.py");
+            app.exec("cmd.exe /k start Secante.py");
             }
             catch(Exception error){
                 System.out.println("Error: " + error);
@@ -96,7 +96,7 @@ public class Principal extends JFrame implements ActionListener{
         if(e.getSource() == pT){
             Runtime app = Runtime.getRuntime();
             try{
-            app.exec("cmd.exe /k start C:/Users/miken/OneDrive/Escritorio/Metodos/PivoteoTotal.py");
+            app.exec("cmd.exe /k start PivoteoTotal.py");
             }
             catch(Exception error){
                 System.out.println("Error: " + error);
@@ -106,7 +106,7 @@ public class Principal extends JFrame implements ActionListener{
         if(e.getSource() == pP){
             Runtime app = Runtime.getRuntime();
             try{
-            app.exec("cmd.exe /k start C:/Users/miken/OneDrive/Escritorio/Metodos/PivoteoTotal.py");
+            app.exec("cmd.exe /k start PivoteoTotal.py");
             }
             catch(Exception error){
                 System.out.println("Error: " + error);
@@ -116,7 +116,7 @@ public class Principal extends JFrame implements ActionListener{
         if(e.getSource() == pE){
             Runtime app = Runtime.getRuntime();
             try{
-            app.exec("cmd.exe /k start C:/Users/miken/OneDrive/Escritorio/Metodos/PivoteoTotal.py");
+            app.exec("cmd.exe /k start PivoteoTotal.py");
             }
             catch(Exception error){
                 System.out.println("Error: " + error);
