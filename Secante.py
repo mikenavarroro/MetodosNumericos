@@ -5,33 +5,83 @@ TW: @MikeNavarroR
 e-mail: mike.navarroro@gmail.com
 
 '''
-from math import e, pi
-from math import *
 import sympy as sp
-import msvcrt as mv
+from numpy import *
+import tkinter as tk
+from matplotlib import pyplot as plt
+
+
+ven = tk.Tk()
+ven.geometry('600x500')
+ven.title("Secante")
+ven.resizable(False, False)
+
+func = tk.StringVar()
+a_var = tk.StringVar()
+b_var = tk.StringVar()
+err_u = tk.StringVar()
 
 x = sp.symbols('x')
-funcion = input("Escribe la función en términos de x: ")
-a = float(input("Valor de a: "))
-b = float(input("Valor de b: "))
-erroru = float(input("Error: "))
-error = 1
-lista = []
-i = 0
-print("{:>11} {:>11} {:>11} {:>11} {:>11} {:>11} {:>11}".format('a', 'b', 'f(a)', 'f(b)', 'Xn', 'f(Xn)', 'Error'))
 
-while error > erroru:
-    fa = sp.sympify(funcion).subs(x, a)
-    fb = sp.sympify(funcion).subs(x, b)
-    c = b - ((b - a) / (fb - fa) * fb)
-    lista.append(c)
-    fc = sp.sympify(funcion).subs(x, c)
-    if i != 0:
-        error = abs((lista[i]-lista[i-1])/lista[i])
-    print("{:<2}| {:^10.10s}| {:^10.10s}| {:^10.10s}| {:^10.10s}| {:^10.10s}| {:^11.10s}| {:^10.10s}|".format(str(i+1),str(a),str(b),str(fa),str(fb),str(c),str(fc),str(error)))
-    print("-----------------------------------------------------------------------------------------")
-    a, b = b, c
-    i += 1
-mv.getch()
-print("Presiona cualquier tecla para salir")
-mv.getch()
+lblfun = tk.Label(ven, text="Función:").grid(row = 0, column = 1)
+lblfunc = tk.Label(ven, text="f(x)").grid(row = 1, column = 5)
+entfunc = tk.Entry(ven, textvariable=func).grid(row = 2, column = 5)
+lblinter = tk.Label(ven, text="Intervalo:").grid(row = 3, column = 1)
+lbla = tk.Label(ven, text="a").grid(row = 4, column = 5)
+enta = tk.Entry(ven, textvariable=a_var).grid(row = 5, column = 5)
+lblb = tk.Label(ven, text="b").grid(row = 6, column = 5)
+entb = tk.Entry(ven, textvariable=b_var).grid(row = 7, column = 5)
+lblerr = tk.Label(ven, text="Error:").grid(row = 8, column = 1)
+lblerroru = tk.Label(ven, text="error").grid(row = 9, column = 5)
+enterroru = tk.Entry(ven, textvariable=err_u).grid(row = 10, column = 5)
+
+def iniciar():
+    vent = tk.Toplevel(ven)
+    error = 1
+    lista = []
+    i = 0
+
+    erroru = float(err_u.get())
+    funcion = func.get()
+    a = float(a_var.get())
+    b = float(b_var.get())
+
+    vent.title(funcion)
+
+    m = tk.Label(vent, text="n", bg = "black", fg = "white", width=20, height=1).grid(row = 0, column = 0)
+    m = tk.Label(vent, text="a", bg = "black", fg = "white", width=20, height=1).grid(row = 0, column = 1)
+    m = tk.Label(vent, text="b", bg = "black", fg = "white", width=20, height=1).grid(row = 0, column = 2)
+    m = tk.Label(vent, text="f(a)", bg = "black", fg = "white", width=20, height=1).grid(row = 0, column = 3)
+    m = tk.Label(vent, text="f(b)", bg = "black", fg = "white", width=20, height=1).grid(row = 0, column = 4)
+    m = tk.Label(vent, text="Xn", bg = "black", fg = "white", width=20, height=1).grid(row = 0, column = 5)
+    m = tk.Label(vent, text="f(Xn)", bg = "black", fg = "white", width=20, height=1).grid(row = 0, column = 6)
+    m = tk.Label(vent, text="error", bg = "black", fg = "white", width=20, height=1).grid(row = 0, column = 7)
+
+    while error > erroru:
+
+        fa = sp.sympify(funcion).subs(x, a)
+        fb = sp.sympify(funcion).subs(x, b)
+        c = b - ((b - a) / (fb - fa) * fb)
+        lista.append(c)
+        fc = sp.sympify(funcion).subs(x, c)
+        if i != 0:
+            error = abs((lista[i]-lista[i-1])/lista[i])
+        m = tk.Label(vent, text=i+1, width=20, height=1).grid(row = i+1, column = 0)
+        m = tk.Label(vent, text=a).grid(row = i+1, column = 1)
+        m = tk.Label(vent, text=b, width=20, height=1).grid(row = i+1, column = 2)
+        m = tk.Label(vent, text=fa).grid(row = i+1, column = 3)
+        m = tk.Label(vent, text=fb, width=20, height=1).grid(row = i+1, column = 4)
+        m = tk.Label(vent, text=c).grid(row = i+1, column = 5)
+        m = tk.Label(vent, text=fc, width=20, height=1).grid(row = i+1, column = 6)
+        m = tk.Label(vent, text=error).grid(row = i+1, column = 7)
+        a, b = b, c
+        i += 1
+
+def graficar():
+    pass
+
+
+tabular = tk.Button(ven, text="Tabular", command=iniciar).grid(row = 11, column = 3)
+graficar = tk.Button(ven, text="Graficar", command=graficar).grid(row = 11, column = 5)
+
+ven.mainloop()

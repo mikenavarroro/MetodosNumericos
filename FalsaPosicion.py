@@ -5,51 +5,63 @@ TW: @MikeNavarroR
 e-mail: mike.navarroro@gmail.com
 
 '''
-import numpy as np
+from numpy import *
 import sympy as sp
 import tkinter as tk
 from matplotlib import pyplot as plt
 
 ven = tk.Tk()
 ven.geometry('600x500')
+ven.title("Falsa Posición")
+ven.resizable(False, False)
 
 func = tk.StringVar()
-a_var = tk.IntVar()
-b_var = tk.IntVar()
+a_var = tk.StringVar()
+b_var = tk.StringVar()
 err_u = tk.StringVar()
 
 
 x = sp.symbols('x')
 
-lblfunc = tk.Label(ven, text="f(x)").place(x = 10, y = 10)
-entfunc = tk.Entry(ven, textvariable=func).place(x = 30, y = 10)
-lbla = tk.Label(ven, text="a").place(x = 10, y = 30)
-enta = tk.Entry(ven, textvariable=a_var).place(x = 30, y = 30)
-lblb = tk.Label(ven, text="b").place(x = 10, y = 50)
-entb = tk.Entry(ven, textvariable=b_var).place(x = 30, y = 50)
-lblerroru = tk.Label(ven, text="error").place(x = 10, y = 70)
-enterroru = tk.Entry(ven, textvariable=err_u).place(x = 30, y = 70)
+lblfun = tk.Label(ven, text="Función:").grid(row = 0, column = 1)
+lblfunc = tk.Label(ven, text="f(x)").grid(row = 1, column = 5)
+entfunc = tk.Entry(ven, textvariable=func).grid(row = 2, column = 5)
+lblinter = tk.Label(ven, text="Intervalo:").grid(row = 3, column = 1)
+lbla = tk.Label(ven, text="a").grid(row = 4, column = 5)
+enta = tk.Entry(ven, textvariable=a_var).grid(row = 5, column = 5)
+lblb = tk.Label(ven, text="b").grid(row = 6, column = 5)
+entb = tk.Entry(ven, textvariable=b_var).grid(row = 7, column = 5)
+lblerr = tk.Label(ven, text="Error:").grid(row = 8, column = 1)
+lblerroru = tk.Label(ven, text="error").grid(row = 9, column = 5)
+enterroru = tk.Entry(ven, textvariable=err_u).grid(row = 10, column = 5)
 
 def graficar():
     funcion = func.get()
-    a = a_var.get()
-    b = b_var.get()
-    if a > b:
-        a, b = b, a
 
-    plt.plot(x, [sp.sympify(funcion).subs(x, i) for i in range(1, 19)])
+    z = np.arange(-10, 10, 1000)
+    y = sp.sympify(funcion).subs(x, z)
 
-
+    plt.plot(z, y)
+    plt.title(funcion)
+    plt.xlim(-10, 10)
+    plt.ylim(-10, 10)
+    plt.axhline(0, color="black")
+    plt.axvline(0, color="black")
     plt.show()
+
+
 def iniciar():
     vent = tk.Toplevel(ven)
     funcion = func.get()
-    a = a_var.get()
-    b = b_var.get()
+    a = float(a_var.get())
+    b = float(b_var.get())
     erroru = float(err_u.get())
     error = 1
     lista = []
     i = 0
+
+    vent.title(funcion)
+
     m = tk.Label(vent, text="n", bg = "black", fg = "white", width=10, height=1).grid(row = 0, column = 0)
     m = tk.Label(vent, text="a", bg = "black", fg = "white", width=10, height=1).grid(row = 0, column = 1)
     m = tk.Label(vent, text="b", bg = "black", fg = "white", width=10, height=1).grid(row = 0, column = 2)
@@ -82,7 +94,7 @@ def iniciar():
             a = c
         i += 1
 
-tabular = tk.Button(ven, text="Tabular", command=iniciar).place(x = 200, y = 300)
-graficar = tk.Button(ven, text="Graficar", command=graficar). place(x = 400, y = 300)
+tabular = tk.Button(ven, text="Tabular", command=iniciar).grid(row = 11, column = 3)
+graficar = tk.Button(ven, text="Graficar", command=graficar).grid(row = 11, column = 5)
 
 ven.mainloop()

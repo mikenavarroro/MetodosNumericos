@@ -5,9 +5,9 @@ TW: @MikeNavarroR
 e-mail: mike.navarroro@gmail.com
 
 '''
-from math import *
 import sympy as sp
-import msvcrt as mv
+import tkinter as tk
+from numpy import *
 
 x = sp.symbols('x')
 funcion = input("Escribe la función en términos de x: ")
@@ -34,6 +34,3 @@ while error > erroru:
     elif fa * fc > 0:
         a = c
     i += 1
-mv.getch()
-print("Presiona cualquier tecla para salir")
-mv.getch()
