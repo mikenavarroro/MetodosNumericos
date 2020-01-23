@@ -8,6 +8,7 @@ e-mail: mike.navarroro@gmail.com
 import sympy as sp
 import tkinter as tk
 from numpy import *
+import numpy as np
 
 x = sp.symbols('x')
 funcion = input("Escribe la función en términos de x: ")

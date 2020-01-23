@@ -78,7 +78,17 @@ def iniciar():
         i += 1
 
 def graficar():
-    pass
+    funcion = func.get()
+    z, y = [], []
+
+    for i in range(-100, 101):
+        z.append(i)
+        y.append(sp.sympify(funcion).subs(x, i))
+
+    plt.axhline(0, color='black')
+    plt.axvline(0, color='black')
+
+    plt.show()
 
 
 tabular = tk.Button(ven, text="Tabular", command=iniciar).grid(row = 11, column = 3)

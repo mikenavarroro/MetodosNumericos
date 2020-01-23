@@ -87,8 +87,10 @@ def graficar():
     plt.plot(z, y)
     plt.plot(a, b)
     plt.title(func)
+    
     plt.axhline(0, color="black")
     plt.axvline(0, color="black")
+
     plt.show()
 
 
