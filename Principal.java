@@ -53,6 +53,7 @@ public class Principal extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
+      if(sistema.equals("Windows")){
         if(e.getSource() == biseccion){
             Runtime app = Runtime.getRuntime();
             try{
@@ -122,6 +123,11 @@ public class Principal extends JFrame implements ActionListener{
                 System.out.println("Error: " + error);
             }
         }
+      }else if(sistema.equals("Linux")){
+
+      }else{
+        
+      }
 
         if(e.getSource() == salir){
             System.exit(0);
