@@ -74,10 +74,11 @@ def graficar():
     funci = funcion.get()
     func = sp.sympify(funci)
     derivada = func.diff(x)
+    lista = [func, derivada]
 
     a, b, z, y = [], [], [], []
-
-    for i in range(-100, 101):
+    
+    for i in range(-50, 51):
         z.append(i)
         a.append(i)
         y.append(sp.sympify(func).subs(x, i))
@@ -86,8 +87,8 @@ def graficar():
 
     plt.plot(z, y)
     plt.plot(a, b)
-    plt.title(func)
-    
+    plt.legend(labels= lista)
+
     plt.axhline(0, color="black")
     plt.axvline(0, color="black")
 

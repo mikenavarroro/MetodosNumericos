@@ -38,13 +38,14 @@ enterroru = tk.Entry(ven, textvariable=err_u).grid(row = 10, column = 5)
 def graficar():
     funcion = func.get()
 
-    z = np.arange(-10, 10, 1000)
-    y = sp.sympify(funcion).subs(x, z)
+    z, y = [], []
+
+    for i in range(-50, 51):
+        z.append(i)
+        y.append(sp.sympify(funcion).subs(x, i))
 
     plt.plot(z, y)
     plt.title(funcion)
-    plt.xlim(-10, 10)
-    plt.ylim(-10, 10)
     plt.axhline(0, color="black")
     plt.axvline(0, color="black")
     plt.show()
